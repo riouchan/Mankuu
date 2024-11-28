@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>満空</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href=" {% static '/css/style.css' %}" />
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+
+    <div class="form">
+      <h3>満空設定情報（新規）</h3>
+      <br />
+      <hr />
+      <form method="post">
+        {% csrf_token %}
+        <div class="form_input">
+          <div class="row mb-3">
+            <label for="{{ form.customer_code.id_for_label }}" class="col-sm-2 col-form-label">顧客コード</label>
+            <div class="col-sm-10">
+              {{ form.customer_code }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.parking_name.id_for_label }}" class="col-sm-2 col-form-label">駐輪場名</label>
+            <div class="col-sm-10">
+              {{ form.parking_name }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.database.id_for_label }}" class="col-sm-2 col-form-label">データベース名</label>
+            <div class="col-sm-10">
+              {{ form.database }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.start_rack.id_for_label }}" class="col-sm-2 col-form-label">開始ラック番号</label>
+            <div class="col-sm-10">
+              {{ form.start_rack }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.end_rack.id_for_label }}" class="col-sm-2 col-form-label">終了ラック番号</label>
+            <div class="col-sm-10">
+              {{ form.end_rack }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.machine_id.id_for_label }}" class="col-sm-2 col-form-label">機器ID</label>
+            <div class="col-sm-10">
+              {{ form.machine_id }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.machine_type.id_for_label }}" class="col-sm-2 col-form-label">Machine Type</label>
+            <div class="col-sm-10">
+              {{ form.machine_type }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.area_code.id_for_label }}" class="col-sm-2 col-form-label">エリアコード</label>
+            <div class="col-sm-10">
+              {{ form.area_code }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.available_flag.id_for_label }}" class="col-sm-2 col-form-label">Available Flag</label>
+            <div class="col-sm-10">
+              {{ form.available_flag }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.empty_threshold.id_for_label }}" class="col-sm-2 col-form-label">Empty Threshold</label>
+            <div class="col-sm-10">
+              {{ form.empty_threshold }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.busy_threshold.id_for_label }}" class="col-sm-2 col-form-label">Busy Threshold</label>
+            <div class="col-sm-10">
+              {{ form.busy_threshold }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.vehicle_type.id_for_label }}" class="col-sm-2 col-form-label">Vehicle Type</label>
+            <div class="col-sm-10">
+              {{ form.vehicle_type }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.full_car_count.id_for_label }}" class="col-sm-2 col-form-label">Full Car Count</label>
+            <div class="col-sm-10">
+              {{ form.full_car_count }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.created.id_for_label }}" class="col-sm-2 col-form-label">Created</label>
+            <div class="col-sm-10">
+              {{ form.created }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="{{ form.modified.id_for_label }}" class="col-sm-2 col-form-label">Modified</label>
+            <div class="col-sm-10">
+              {{ form.modified }}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+
+
+  <footer class="footer">
+    <p>Copyright©2024 TOKAIGIKEN Co., Ltd All Rights Reserved</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  
+</html>

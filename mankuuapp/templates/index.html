@@ -1,0 +1,146 @@
+{% extends 'main.html' %} {% load static %} {% load custom_filters %} {% block content %}
+
+<div class="body-top-atas">
+  <h3 style="margin: 12px 0 5px 20px; font-weight: bolder;">満空設定一覧</h3>
+
+  <a href="{% url 'create_mankuu_info' %}">
+    <button class="btn btn-primary form-control" type="submit" style="margin: 5px 0 5px 20px; display: flex; font-size: 1.25rem; font-weight: 500; text-decoration: none;">
+      新規追加
+    </button>
+  </a>
+</div>
+
+
+
+<div class="body-top-bawah">
+  <div class="kenhyouji">
+    <div class="kenhyouji-option">
+      件表示
+      <span style="font-size: 1.25rem; font-weight: bold; margin: 5px 2px 0 10px;">
+        {{ page_now }}件
+      </span>
+      <div class="dropright-kenhyouji">
+        <a class="listkenhyouji" href="?page_size=10">10件</a>
+        <a class="listkenhyouji" href="?page_size=20">20件</a>
+        <a class="listkenhyouji" href="?page_size=50">50件</a>
+        <a class="listkenhyouji" href="?page_size=100">100件</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="kensaku">
+    <form method="get" action="" class="search-container">
+      <button type="submit" id="Search-btn" class="fas fa-search" style="outline: none; border: none;"></button>
+      <input type="search" name="search" class="search-input active-search" placeholder="検索" value="{{ search_query }}" />
+    </form>
+  </div>
+</div>
+
+<div class="manqoo-container">
+  <table class="manqoo-table">
+    <thead>
+      <tr>
+        <th>
+          Number
+          <a href="?ordering={% if ordering == 'id' %}-id{% else %}id{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "id" %} ▲ {% elif ordering == "-id" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>
+          顧客コード
+          <a href="?ordering={% if ordering == 'customer_code' %}-customer_code{% else %}customer_code{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "customer_code" %} ▲ {% elif ordering == "-customer_code" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>
+          駐輪所名
+          <a href="?ordering={% if ordering == 'parking_name' %}-parking_name{% else %}parking_name{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "parking_name" %} ▲ {% elif ordering == "-parking_name" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>
+          開始ラック
+          <a href="?ordering={% if ordering == 'start_rack' %}-start_rack{% else %}start_rack{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "start_rack" %} ▲ {% elif ordering == "-start_rack" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>
+          終了ラック
+          <a href="?ordering={% if ordering == 'end_rack' %}-end_rack{% else %}end_rack{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "end_rack" %} ▲ {% elif ordering == "-end_rack" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>
+          機器ID
+          <a href="?ordering={% if ordering == 'machine_id' %}-machine_id{% else %}machine_id{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "machine_id" %} ▲ {% elif ordering == "-machine_id" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>
+          エリアコード
+          <a href="?ordering={% if ordering == 'area_code' %}-area_code{% else %}area_code{% endif %}&page_size={{ page_size }}">
+            <span class="sort-arrow">
+              {% if ordering == "area_code" %} ▲ {% elif ordering == "-area_code" %} ▼ {% else %} ⇅ {% endif %}
+            </span>
+          </a>
+        </th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mankuu in page_obj %}
+      <tr>
+        <td>{{ mankuu.id }}</td>
+        <td>{{ mankuu.customer_code|highlight_search:search_query|safe }}</td>
+        <td>{{ mankuu.parking_name|highlight_search:search_query|safe }}</td>
+        <td>{{ mankuu.start_rack|default:"-"|highlight_search:search_query|safe }}</td>
+        <td>{{ mankuu.end_rack|default:"-"|highlight_search:search_query|safe }}</td>
+        <td>{{ mankuu.machine_id|default:"-"|highlight_search:search_query|safe }}</td>
+        <td>{{ mankuu.area_code|highlight_search:search_query|safe }}</td>
+        <td>
+          <a href=" {% url 'edit_mankuu' mankuu.id %} " style="font-size: 12px; background-color: green; color: white; padding: 5px 10px; border-radius: 3px; text-decoration: none; white-space: nowrap;">詳細</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination Controls -->
+<div class="centering-pagination">
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+    <div class="start">
+      <a href="?page=1&search={{ search_query }}&page_size={{ page_size }}">&laquo; 最初</a>
+      <a href="?page={{ page_obj.previous_page_number }}&search={{ search_query }}&page_size={{ page_size }}">前</a>
+    </div>
+    {% endif %}
+
+    <div class="middle">
+      {% for page_num in page_obj.paginator.page_range %}
+      <a class="{% if page_num == page_obj.number %}active{% endif %}" href="?page={{ page_num }}&search={{ search_query }}&page_size={{ page_size }}">{{ page_num }}</a>
+      {% endfor %}
+    </div>
+
+    {% if page_obj.has_next %}
+    <div class="end">
+      <a href="?page={{ page_obj.next_page_number }}&search={{ search_query }}&page_size={{ page_size }}">次</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search_query }}&page_size={{ page_size }}">最後 &raquo;</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{%endblock%}

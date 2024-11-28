@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+{% block content %}
+<h3>本当に「{{ mankuu.parking_name }}」を削除してよろしいですか？</h3>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">削除する</button>
+    <a href="{% url 'edit_mankuu' mankuu.id %}" class="btn btn-secondary">キャンセル</a>
+</form>
+{% endblock %}

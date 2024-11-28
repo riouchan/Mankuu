@@ -1,0 +1,183 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<h3 style="margin: 30px;">満空設定情報（新規）</h3>
+<hr />
+
+<div class="form">
+  <form method="post">
+    {% csrf_token %}
+    <div class="form_input">
+      <div class="row mb-3">
+        <!-- Label Column -->
+        <label for="{{ form.customer_code.id_for_label }}" class="col-auto col-form-label label-row">顧客コード</label>
+
+        <!-- Table Name Column -->
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [customer_code]
+        </div>
+
+        <!-- Input Column -->
+        <div class="col-sm-9">
+          {{ form.customer_code }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.parking_name.id_for_label }}" class="col-auto col-form-label label-row">駐輪場名</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [parking_name]
+        </div>
+        <div class="col-sm-9">
+          {{ form.parking_name }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.database.id_for_label }}" class="col-auto col-form-label label-row">データベース名</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [database]
+        </div>
+        <div class="col-sm-9">
+          {{ form.database }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.start_rack.id_for_label }}" class="col-auto col-form-label label-row">開始ラック番号</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [start_rack]
+        </div>
+        <div class="col-sm-9">
+          {{ form.start_rack }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.end_rack.id_for_label }}" class="col-auto col-form-label label-row">終了ラック番号</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [end_rack]
+        </div>
+        <div class="col-sm-9">
+          {{ form.end_rack }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.machine_id.id_for_label }}" class="col-auto col-form-label label-row">機器ID</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [machine_id]
+        </div>
+        <div class="col-sm-9">
+          {{ form.machine_id }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.machine_type.id_for_label }}" class="col-auto col-form-label label-row">Machine Type</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [machine_type]
+        </div>
+        <div class="col-sm-9">
+          {{ form.machine_type }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.area_code.id_for_label }}" class="col-auto col-form-label label-row">エリアコード</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [area_code]
+        </div>
+        <div class="col-sm-9">
+          {{ form.area_code }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.available_flag.id_for_label }}" class="col-auto col-form-label label-row">Available Flag</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [available_flag]
+        </div>
+        <div class="col-sm-9">
+          {{ form.available_flag }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.empty_threshold.id_for_label }}" class="col-auto col-form-label label-row">Empty Threshold</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [empty_threshold]
+        </div>
+        <div class="col-sm-9">
+          {{ form.empty_threshold }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.busy_threshold.id_for_label }}" class="col-auto col-form-label label-row">Busy Threshold</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [busy_threshold]
+        </div>
+        <div class="col-sm-9">
+          {{ form.busy_threshold }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.vehicle_type.id_for_label }}" class="col-auto col-form-label label-row">Vehicle Type</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [vehicle_type]
+        </div>
+        <div class="col-sm-9">
+          {{ form.vehicle_type }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.full_car_count.id_for_label }}" class="col-auto col-form-label label-row">Full Car Count</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [full_car_count]
+        </div>
+        <div class="col-sm-9">
+          {{ form.full_car_count }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.created.id_for_label }}" class="col-auto col-form-label label-row">Created</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [created]
+        </div>
+        <div class="col-sm-9">
+          {{ form.created }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="{{ form.modified.id_for_label }}" class="col-auto col-form-label label-row">Modified</label>
+        <div class="col-auto col-form-label label-row text-muted custom-spacing">
+          [modified]
+        </div>
+        <div class="col-sm-9">
+          {{ form.modified }}
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- Delete Button -->
+      <form method="POST" action="{% url 'delete_mankuu' mankuu.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger delete-button" onclick="return confirm('本当に削除してよろしいですか？');">
+              削除する
+          </button>
+      </form>
+  </div>
+  </form>
+
+
+</div>
+
+
+
+{%endblock%}
